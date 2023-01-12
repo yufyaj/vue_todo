@@ -5,7 +5,7 @@ var todoStorage = {
             localStorage.getItem(STORAGE_KEY) || '[]'
         )
         todos.forEach(function(todo, index) {
-            todo.id = index
+            todo.id = index;
         })
         todoStorage.uid = todos.length
         return todos
@@ -39,6 +39,13 @@ new Vue ({
             })
 
             comment.value = '';
+        },
+        doDelete: function(item){
+            var index = this.todos.indexOf(item);
+            this.todos.splice(index, 1);
+        },
+        doChangeState: function(item){
+            item.state = item.state == 0 ? 1 : 0;
         }
     },
     watch: {
