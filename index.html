@@ -4,15 +4,41 @@
   <meta charset="utf-8">
   <title>Vue.js App</title>
   <link rel="stylesheet" href="main.css">
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-  <script src="main.js"></script>
 </head>
-<body>
+<body>  
+  <h2>新しい作業の追加</h2>
   <div id="app">
-    <!-- 絞り込みラジオボタン -->
-    <!-- ToDo テーブル -->
-    <!-- 新規登録フォーム -->
+    <form class="add-form" v-on:submit.prevent="doAdd">
+      コメント<input type="text" ref="comment">
+      <button type="submit">追加</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="id">ID</th>
+          <th class="comment">コメント</th>
+          <th class="state">状態</th>
+          <th class="button">-</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="todo in todos" v-bind:key="todo.id">
+          <th>{{ todo.id }}</th>
+          <td>{{ todo.comment }}</td>
+            <td class="state">
+            <button>{{ todo.state }}</button>
+          </td>
+          <td class="button">
+            <button>削除</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="./main.js"></script>
 </body>
 </html>
